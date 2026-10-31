@@ -6,6 +6,9 @@ package-lock.json
 uploads/photostrips/*
 !uploads/photostrips/.gitkeep
 
+# Secret Admin Dashboard (Private to Reizo - Do not distribute)
+admin.html
+
 # Operating System
 .DS_Store
 Thumbs.db

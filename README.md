@@ -12,7 +12,6 @@ Sebuah website interaktif bertema **Artisanal Vintage Christmas & 3-Cut Photoboo
 ## 🌟 Demo & Tampilan Preview
 
 - **Live URL**: [http://localhost:3000](http://localhost:3000)
-- **Private Admin Dashboard**: [http://localhost:3000/admin.html](http://localhost:3000/admin.html)
 
 ---
 
@@ -95,13 +94,6 @@ Sebuah website interaktif bertema **Artisanal Vintage Christmas & 3-Cut Photoboo
 - Surat ucapan hangat dari **Reizo Rajendra Dianta** untuk semua orang (*To: Everyone*) yang telah menjadi bagian berharga sepanjang tahun 2026.
 - **Voucher Natal Interaktif (Holiday Coupons)**: Kupon pelukan hangat, cokelat panas, liburan keliling kota, dan permintaan Natal yang bisa di-redeem dengan efek suara dan konfeti.
 
-### 8. 🛡️ Private Admin Dashboard (`/admin.html`)
-- Dashboard privat khusus Reizo untuk melihat semua strip foto yang dibuat oleh pengunjung.
-- Fitur:
-  - Melihat galeri semua foto yang masuk secara aman tanpa mengganggu halaman utama.
-  - Mengunduh file PNG resolusi tinggi asli kapan saja.
-  - Menghapus foto testing/spam langsung dari database via tombol hapus 🗑️.
-
 ---
 
 ## 🛠️ Tech Stack
@@ -125,7 +117,6 @@ Sebuah website interaktif bertema **Artisanal Vintage Christmas & 3-Cut Photoboo
 
 ```
 christmas-booth/
-├── admin.html               # Private Admin Dashboard untuk Reizo
 ├── index.html               # Halaman Utama (Main Holiday Experience)
 ├── package.json             # Konfigurasi Proyek & Metadata
 ├── README.md                # Dokumentasi Lengkap Proyek
@@ -179,7 +170,6 @@ christmas-booth/
 
 3. **Buka di Browser:**
    - **Halaman Utama**: [http://localhost:3000](http://localhost:3000)
-   - **Halaman Admin Database**: [http://localhost:3000/admin.html](http://localhost:3000/admin.html)
 
 ---
 
