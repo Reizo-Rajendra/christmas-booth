@@ -1,0 +1,71 @@
+/* ==========================================================================
+   FESTIVE ANIMATIONS & MICRO-INTERACTIONS
+   Smooth, Hardware-Accelerated 60fps Christmas Charm
+   ========================================================================== */
+
+/* Floating Soft Bounce (for envelope, cards, gifts) */
+@keyframes festiveFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.envelope-stage {
+  animation: festiveFloat 6s ease-in-out infinite;
+}
+
+/* Golden Starlight Shimmer - Soft & Subtle */
+@keyframes goldShimmer {
+  0% { filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.3)); }
+  50% { filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6)); }
+  100% { filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.3)); }
+}
+
+.tree-star-wrapper svg {
+  animation: goldShimmer 3.5s infinite ease-in-out;
+}
+
+/* Twinkling Fairy Lights - Natural Warm Glow */
+@keyframes bulbTwinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.95; }
+}
+
+.bulb-gold { animation: bulbTwinkle 2.2s infinite ease-in-out; }
+.bulb-red { animation: bulbTwinkle 2.8s infinite ease-in-out 0.6s; }
+.bulb-green { animation: bulbTwinkle 2.5s infinite ease-in-out 1.2s; }
+
+/* Smoke Puffs from Village Chimneys */
+@keyframes chimneySmoke {
+  0% { opacity: 0.7; transform: translateY(0) scale(1); }
+  50% { opacity: 0.4; transform: translateY(-15px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-30px) scale(1.5); }
+}
+
+.smoke-puff {
+  animation: chimneySmoke 3.5s infinite ease-out;
+}
+
+/* Pop In Animation for Modals & Lightbox */
+@keyframes popModalIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-visible .modal-dialog,
+.lightbox-active .lightbox-content,
+.show-pop {
+  animation: popModalIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Holiday Ribbon Flutter */
+@keyframes ribbonFlutter {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  75% { transform: rotate(-1deg); }
+}
+
+.banner-ribbon-decor {
+  display: inline-block;
+  animation: ribbonFlutter 4s ease-in-out infinite;
+}

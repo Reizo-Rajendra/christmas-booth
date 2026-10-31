@@ -1,0 +1,31 @@
+{
+  "name": "christmas-booth",
+  "version": "2.0.0",
+  "description": "Artisanal Vintage Christmas Interactive Experience & Holiday 3-Cut Photobooth Studio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reizo-Rajendra/christmas-booth.git"
+  },
+  "keywords": [
+    "christmas",
+    "photobooth",
+    "holiday",
+    "vintage",
+    "life-four-cuts",
+    "interactive",
+    "webcam",
+    "canvas",
+    "reizo"
+  ],
+  "author": "Reizo Rajendra Dianta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Reizo-Rajendra/christmas-booth/issues"
+  },
+  "homepage": "https://github.com/Reizo-Rajendra/christmas-booth#readme"
+}

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merry Christmas — Vintage Interactive Experience &amp; Holiday Photobooth</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23d32f2f%22 stroke-width=%222%22><path d=%22m12 2-7 9h4l-4 7h14l-4-7h4z%22/><path d=%22M10 22h4%22/></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css?v=2026.4">
+  <link rel="stylesheet" href="css/photobooth.css?v=2026.4">
+  <link rel="stylesheet" href="css/animations.css?v=2026.4">
+
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- Background 3D Cinematic Snow Particles -->
+  <canvas id="snowCanvas"></canvas>
+
+  <!-- ==================================================================== -->
+  <!-- SCREEN 1: THE INTERACTIVE WAX-SEALED ENVELOPE (HERO INTRO)           -->
+  <!-- 100% Flush, Seamless Closure • Realistic Physical Wax Seal          -->
+  <!-- ==================================================================== -->
+  <section class="envelope-hero-screen" id="envelopeHero">
+    <h1 class="envelope-intro-title">Merry Christmas</h1>
+
+    <div class="envelope-stage">
+      <div class="envelope-box">
+        <!-- Postcard Inside Envelope (Slides Up When Opened) -->
+        <div class="postcard-letter" id="postcardLetter">
+          <div class="pc-top">
+            <span class="pc-postmark">NORTH POLE AIR MAIL</span>
+            <div class="pc-stamp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#a83232" stroke-width="2">
+                <path d="m12 2-7 9h4l-4 7h14l-4-7h4z"/>
+                <path d="M10 22h4"/>
+              </svg>
+            </div>
+          </div>
+          <div class="pc-content">
+            <h2 class="pc-holiday-script">Have yourself a merry little Christmas</h2>
+            <p class="pc-tagline">"May your days be merry, warm and bright..."</p>
+          </div>
+          <div class="pc-footer">
+            <span>OFFICIAL HOLIDAY DELIVERY FROM REIZO RAJENDRA DIANTA • 25 DEC 2026</span>
+          </div>
+        </div>
+
+        <!-- Left, Right & Bottom Pocket Folds (No Gaps) -->
+        <div class="envelope-pocket-left"></div>
+        <div class="envelope-pocket-right"></div>
+        <div class="envelope-pocket-bottom"></div>
+
+        <!-- 3D Folding Top Flap (Folds DOWNWARDS, covering seam flush) -->
+        <div class="envelope-flap-top" id="envelopeFlap"></div>
+
+        <!-- Gold Wax Seal Button placed on flap apex -->
+        <button class="wax-seal-btn" id="waxSealButton" title="Break the wax seal to open!">
+          <div class="seal-emboss">
+            <div class="seal-icon-svg">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <span class="seal-text">OPEN</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <p class="envelope-subnote">Tap the golden wax seal to unwrap your interactive Christmas gift</p>
+
+    <!-- Interactive Choice Prompt: "Do you want to open your surprise?" -->
+    <div class="surprise-choice-box hidden" id="surpriseChoiceBox">
+      <h3 class="choice-title">Do you want to open your surprise?</h3>
+      <div class="choice-btns">
+        <button class="btn-choice-yes" id="btnSurpriseYes">
+          <span>Yes, Open It</span>
+        </button>
+        <button class="btn-choice-no" id="btnSurpriseNo">Not Yet</button>
+      </div>
+    </div>
+
+    <!-- Playful "No" Tease Card -->
+    <div class="no-message-card hidden" id="noMessageCard">
+      <p>Alright, the surprise will be waiting for you whenever you're ready!</p>
+      <button class="btn-holiday-gold" id="btnNoBack">Back</button>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- SCREEN 2: THE GRAND CHRISTMAS EXPERIENCE (UNLOCKED)                  -->
+  <!-- ==================================================================== -->
+  <main class="main-holiday-container hidden" id="mainHolidayContent">
+    <!-- Festive Sticky Navbar -->
+    <header class="holiday-navbar">
+      <div class="nav-brand">
+        <span>Merry Christmas</span>
+      </div>
+      <nav>
+        <ul class="nav-pills">
+          <li><a href="#sectionBanner" class="nav-pill" data-target="sectionBanner">Welcome</a></li>
+          <li><a href="#sectionMusic" class="nav-pill" data-target="sectionMusic">Playlist</a></li>
+          <li><a href="#sectionCalendar" class="nav-pill" data-target="sectionCalendar">Countdown</a></li>
+          <li><a href="#sectionGame" class="nav-pill" data-target="sectionGame">Find Santa</a></li>
+          <li><a href="#sectionTree" class="nav-pill" data-target="sectionTree">Photo Tree</a></li>
+          <li><a href="#sectionScrapbook" class="nav-pill" data-target="sectionScrapbook">Warm Wishes</a></li>
+          <li><a href="#sectionPhotobooth" class="nav-pill" data-target="sectionPhotobooth">Photobooth</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ================================================================== -->
+    <!-- 1. HERO BANNER: ALL I WANT FOR CHRISTMAS                           -->
+    <!-- ================================================================== -->
+    <section class="holiday-hero-banner" id="sectionBanner">
+      <div class="lace-card-inner">
+        <div class="banner-kicker">WARMEST HOLIDAY WISHES • 2026</div>
+        <h2 class="banner-main-title">MERRY CHRISTMAS</h2>
+        <span class="banner-subscript">to everyone &amp; Happy New Year</span>
+        <div class="banner-ribbon-decor-svg">
+          <svg viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 35 C40 18 15 15 15 32 C15 48 40 45 50 38 Z" fill="#C2185B"/>
+            <path d="M50 35 C60 18 85 15 85 32 C85 48 60 45 50 38 Z" fill="#AD1457"/>
+            <ellipse cx="50" cy="38" rx="8" ry="7" fill="#880E4F"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 2. VINYL PEPPERMINT MUSIC PLAYER (Rotating Turntable)              -->
+    <!-- ================================================================== -->
+    <section class="music-turntable-card" id="sectionMusic">
+      <div class="turntable-deck">
+        <div class="peppermint-disc" id="peppermintVinyl">
+          <div class="disc-grooves"></div>
+          <div class="disc-center-label">
+            <span>HOLIDAY</span>
+          </div>
+        </div>
+
+        <div class="tonearm" id="turntableTonearm">
+          <div class="tonearm-base"></div>
+          <div class="tonearm-arm"></div>
+          <div class="tonearm-head"></div>
+        </div>
+      </div>
+
+      <div class="music-info-panel">
+        <div>
+          <span class="music-badge">OUR CHRISTMAS PLAYLIST</span>
+          <div class="track-meta">
+            <h3 class="track-now-title" id="playerTrackTitle">Last Christmas</h3>
+            <p class="track-now-artist" id="playerTrackArtist">Wham! (Original Vocal)</p>
+          </div>
+
+          <div class="player-controls">
+            <button class="btn-player-step" id="btnPrevTrack" title="Previous Track"></button>
+            <button class="btn-player-play" id="btnPlayPause" title="Play / Pause"></button>
+            <button class="btn-player-step" id="btnNextTrack" title="Next Track"></button>
+          </div>
+        </div>
+
+        <div class="playlist-box">
+          <div class="playlist-track-item track-active" data-index="0">
+            <span>1. Last Christmas (Wham!)</span>
+            <span>04:24</span>
+          </div>
+          <div class="playlist-track-item" data-index="1">
+            <span>2. All I Want for Christmas Is You (Mariah Carey)</span>
+            <span>03:55</span>
+          </div>
+          <div class="playlist-track-item" data-index="2">
+            <span>3. Jingle Bells (Frank Sinatra)</span>
+            <span>02:54</span>
+          </div>
+          <div class="playlist-track-item" data-index="3">
+            <span>4. The Christmas Song (Frank Sinatra)</span>
+            <span>03:13</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 3. COUNTDOWN & DECEMBER CALENDAR                                   -->
+    <!-- ================================================================== -->
+    <section class="countdown-calendar-grid" id="sectionCalendar">
+      <div class="holiday-panel-card">
+        <div class="panel-header-badge">CHRISTMAS COUNTDOWN</div>
+        <h3 class="panel-main-title">Counting Down to Magic</h3>
+        <div class="countdown-tiles">
+          <div class="tile-box">
+            <span class="tile-number" id="cdDays">00</span>
+            <span class="tile-label">Days</span>
+          </div>
+          <div class="tile-box">
+            <span class="tile-number" id="cdHours">00</span>
+            <span class="tile-label">Hours</span>
+          </div>
+          <div class="tile-box">
+            <span class="tile-number" id="cdMinutes">00</span>
+            <span class="tile-label">Mins</span>
+          </div>
+          <div class="tile-box">
+            <span class="tile-number" id="cdSeconds">00</span>
+            <span class="tile-label">Secs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="holiday-panel-card">
+        <div class="panel-header-badge">DECEMBER CALENDAR</div>
+        <h3 class="panel-main-title">A Month of Memories</h3>
+        <div class="december-calendar">
+          <div class="cal-header-day">S</div>
+          <div class="cal-header-day">M</div>
+          <div class="cal-header-day">T</div>
+          <div class="cal-header-day">W</div>
+          <div class="cal-header-day">T</div>
+          <div class="cal-header-day">F</div>
+          <div class="cal-header-day">S</div>
+
+          <div class="cal-day">1</div>
+          <div class="cal-day">2</div>
+          <div class="cal-day">3</div>
+          <div class="cal-day">4</div>
+          <div class="cal-day">5</div>
+          <div class="cal-day">6</div>
+          <div class="cal-day">7</div>
+          <div class="cal-day">8</div>
+          <div class="cal-day">9</div>
+          <div class="cal-day">10</div>
+          <div class="cal-day">11</div>
+          <div class="cal-day">12</div>
+          <div class="cal-day">13</div>
+          <div class="cal-day">14</div>
+          <div class="cal-day">15</div>
+          <div class="cal-day">16</div>
+          <div class="cal-day">17</div>
+          <div class="cal-day">18</div>
+          <div class="cal-day">19</div>
+          <div class="cal-day">20</div>
+          <div class="cal-day">21</div>
+          <div class="cal-day">22</div>
+          <div class="cal-day">23</div>
+          <div class="cal-day">24</div>
+          <div class="cal-day day-special" title="Christmas Day!">25</div>
+          <div class="cal-day">26</div>
+          <div class="cal-day">27</div>
+          <div class="cal-day">28</div>
+          <div class="cal-day">29</div>
+          <div class="cal-day">30</div>
+          <div class="cal-day day-special" title="New Year's Eve!">31</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 4. MINI-GAME: FIND THE HIDDEN SANTA                               -->
+    <!-- ================================================================== -->
+    <section id="sectionGame">
+      <div id="miniGameContainer"></div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 5. MEMORY CHRISTMAS TREE PHOTO MOSAIC                             -->
+    <!-- ================================================================== -->
+    <section id="sectionTree">
+      <div id="treeContainer"></div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 6. SPIRAL SCRAPBOOK, HEARTFELT LETTER & HOLIDAY COUPONS            -->
+    <!-- ================================================================== -->
+    <section id="sectionScrapbook">
+      <div id="scrapbookContainer"></div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 7. VINTAGE CHRISTMAS PHOTOBOOTH STUDIO                             -->
+    <!-- 10 Luxury Themes + 3 Studio Layouts (3-Cut Strip)                  -->
+    <!-- ================================================================== -->
+    <section id="sectionPhotobooth">
+      <div id="photoboothContainer"></div>
+    </section>
+
+    <!-- Holiday Footer -->
+    <footer style="text-align: center; padding: 45px 20px; color: rgba(255,255,255,0.7); font-size: 0.9rem;">
+      <p style="font-family: var(--font-serif); font-size: 1.15rem; color: #fff9e6; margin-bottom: 6px;">
+        Made with love by <strong style="color: var(--gold-bright);">Reizo Rajendra Dianta</strong> for Christmas
+      </p>
+      <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">
+        Vintage Holiday Photobooth Studio &amp; Interactive Love Gift Experience
+      </p>
+    </footer>
+  </main>
+
+  <!-- ==================================================================== -->
+  <!-- CUSTOMIZATION MODAL                                                  -->
+  <!-- ==================================================================== -->
+  <div class="customizer-modal hidden" id="customizerModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Customize Your Gift</h3>
+        <button class="modal-close-btn" id="btnCloseCustomizer">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="inputRecipient">Recipient Name (Untuk):</label>
+          <input type="text" id="inputRecipient" class="form-input" placeholder="e.g. My Beloved, Sarah, Sayang">
+        </div>
+
+        <div class="form-group">
+          <label for="inputSender">Sender Name (Dari):</label>
+          <input type="text" id="inputSender" class="form-input" placeholder="e.g. Alex, Your Secret Santa">
+        </div>
+
+        <div class="form-group">
+          <label for="textareaLetter">Heartfelt Christmas Message (Pesan Natal):</label>
+          <textarea id="textareaLetter" class="form-textarea" rows="6" placeholder="Write your heartfelt holiday letter here..."></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-holiday-gold" id="btnSaveCustomizer">Save &amp; Apply Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/icons/icons.js?v=2026.4"></script>
+  <script src="assets/stickers/stickers.js?v=2026.4"></script>
+  <script src="js/audio.js?v=2026.4"></script>
+  <script src="js/snow.js?v=2026.4"></script>
+  <script src="js/minigame.js?v=2026.4"></script>
+  <script src="js/tree.js?v=2026.4"></script>
+  <script src="js/scrapbook.js?v=2026.4"></script>
+  <script src="js/photobooth.js?v=2026.4"></script>
+  <script src="js/app.js?v=2026.4"></script>
+</body>
+</html>
