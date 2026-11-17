@@ -3,8 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
-const DATA_DIR = path.join(__dirname, 'data');
-const UPLOADS_DIR = path.join(__dirname, 'uploads', 'photostrips');
+const IS_VERCEL = !!process.env.VERCEL;
+const DATA_DIR = IS_VERCEL ? path.join('/tmp', 'data') : path.join(__dirname, 'data');
+const UPLOADS_DIR = IS_VERCEL ? path.join('/tmp', 'uploads', 'photostrips') : path.join(__dirname, 'uploads', 'photostrips');
 const DB_FILE = path.join(DATA_DIR, 'photostrips.json');
 
 // Ensure database and uploads directories exist
@@ -142,7 +143,10 @@ const server = http.createServer((req, res) => {
   // --------------------------------------------------------------------------
   let reqPath = pathname;
   if (reqPath === '/') reqPath = '/index.html';
-  const filePath = path.join(__dirname, reqPath);
+  let filePath = path.join(__dirname, reqPath);
+  if (IS_VERCEL && reqPath.startsWith('/uploads/photostrips/')) {
+    filePath = path.join(UPLOADS_DIR, path.basename(reqPath));
+  }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
@@ -186,6 +190,12 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`🎄 Merry Christmas Photobooth running at http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
+  server.listen(PORT, () => {
+    console.log(`🎄 Merry Christmas Photobooth running at http://localhost:${PORT}`);
+  });
+} else if (process.env.VERCEL) {
+  server.listen(PORT);
+}
+
+module.exports = server;
